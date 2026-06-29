@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+httpx
+beautifulsoup4
+lxml
+trafilatura
+pydantic
+python-dotenv
+qdrant-client
+ollama
