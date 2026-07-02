@@ -8,3 +8,6 @@ pydantic
 python-dotenv
 qdrant-client
 ollama
+sqlalchemy
+alembic
+psycopg2-binary
