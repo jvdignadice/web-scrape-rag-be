@@ -18,3 +18,11 @@ async def create_role(role: RoleCreate):
         return new_role
     finally:
         db.close()
+
+async def get_all_roles():
+    db: Session = SessionLocal()
+    try:
+        roles = db.query(Role).all()
+        return roles
+    finally:
+        db.close() 

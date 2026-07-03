@@ -2,6 +2,7 @@ from fastapi import APIRouter
 import httpx
 from bs4 import BeautifulSoup
 from app.embeddings import ollama_embedder
+from app.services.scraping_services.scrape_best_sellers import scrape_amazon_best_sellers
 
 router = APIRouter()
 embedder = ollama_embedder.OllamaEmbedder()
@@ -26,4 +27,12 @@ async def scrape_url(url: str):
         "links": links,
         "title": title,
         "title_string": title_string,
+    }
+
+@router.get("/amazon_best_sellers")
+async def get_amazon_best_sellers(url: str):
+    best_sellers = await scrape_amazon_best_sellers(url)
+    return {
+        "url": url,
+        "best_sellers": best_sellers
     }
