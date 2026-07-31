@@ -31,6 +31,13 @@ async def ask_question(question: str):
     }
 
 
+async def store_valid_resource(list_of_resources: list[str]):
+    for resource in list_of_resources:
+        embedding = await embedder.embed(resource)
+        chunked_embedding = embedding[:512]
+        point_id = str(uuid.uuid4())
+        await qdrant_client.upsert_point("web-scrape-rag-collection-1", point_id, chunked_embedding, resource)
+
 
 
 
